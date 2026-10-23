@@ -619,11 +619,27 @@
 .photo-story-body p { margin: 0; }
 .photo-story-body p + p { margin-top: var(--ruled-line); }
 @media (max-width: 600px) {
-  .photo-dialog--story[open] { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .photo-dialog--story figure img { max-height: 52svh; }
-  .photo-dialog--story .photo-story {
-    border-left: 0;
-    border-top: 1px dashed var(--line);
-    padding: 120px 12px 20px;
+  .photo-dialog--story[open] {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    width: min(420px, calc(100vw - 32px));
+    max-height: calc(100svh - 32px);
+    padding: 20px;
   }
+  .photo-dialog--story figure { display: none; }
+  .photo-dialog--story .photo-story {
+    border: 0;
+    padding: 98px 0 8px;
+  }
+  .photo-dialog--story .postcard-mark {
+    top: 0;
+    right: 4px;
+    width: 70px;
+    height: 86px;
+  }
+  .photo-dialog--story .photo-story h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+  .photo-dialog--story .photo-story-body { font-size: 22px; }
 }

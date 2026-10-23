@@ -24,6 +24,20 @@
  */
 
 const NS = "http://www.w3.org/2000/svg";
+// Local performance patch: immutable geometry lives outside the animated DOM.
+// Its coordinates remain identical; rendering and timing are unchanged.
+const geometryCache = new WeakMap();
+function geometry(el) {
+  if (el.localName !== 'path') return el;
+  let shape = geometryCache.get(el);
+  if (!shape) {
+    shape = el.cloneNode(false);
+    // Older engines may require rendered geometry even for paths.
+    try { shape.getTotalLength(); shape.getPointAtLength(0); } catch { shape = el; }
+    geometryCache.set(el, shape);
+  }
+  return shape;
+}
 
 const DEFAULTS = {
   // what is generated: "text" (every glyph traced along its outline, the default), "small-text" (a dotted line through
@@ -359,7 +373,7 @@ function build(el, M, opts) {
   G.ctx.scale(dpr, dpr);
   G.ink = css(el, "--tig-ink", "rgba(13, 13, 13, 0.5)"); G.lit = css(el, "--tig-strong", "#6c6c6c");
   const rgb = (G.ink.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(Number); G.light = rgb[0] + rgb[1] + rgb[2] > 384;
-  const stroke = (d, parent, cls = "t-tig-wire", gap = DOT_GAP) => { const e = svg("path", { d, class: cls }, parent); return { el: e, L: e.getTotalLength(), gap }; };
+  const stroke = (d, parent, cls = "t-tig-wire", gap = DOT_GAP) => { const e = svg("path", { d, class: cls }, parent); return { el: e, L: geometry(e).getTotalLength(), gap }; };
   const head = (parent, r = 2.2) => svg("circle", { r: f2(r * DS), class: "t-tig-head", opacity: 0 }, parent);
   if (DS !== 1) layer.style.setProperty("--tig-dot", f2((parseFloat(css(el, "--tig-dot", "2.1")) || 2.1) * DS) + "px");
   const wires = svg("g", { class: "t-tig-wireframe" }, root);
@@ -432,7 +446,7 @@ function build(el, M, opts) {
   G.ret = svg("path", { class: "t-tig-reticle", opacity: 0 }, root); G.tag = svg("text", { class: "t-tig-label t-tig-label--tag", opacity: 0 }, root);
   G.read = svg("text", { class: "t-tig-label t-tig-label--small", opacity: 0 }, root);
   G.flyers = opts.particles === false ? [] : G.glyphs.filter((g) => g.strokes.length).map((g, i) => {
-    const pt = g.strokes[0].el.getPointAtLength(0), ang = hashN(i * 9.1) * Math.PI * 2, dist = 28 + 50 * hashN(i * 4.7);
+    const pt = geometry(g.strokes[0].el).getPointAtLength(0), ang = hashN(i * 9.1) * Math.PI * 2, dist = 28 + 50 * hashN(i * 4.7);
     return { el: svg("circle", { r: f2(1.6 * DS), class: "t-tig-flyer", opacity: 0 }, root), x0: pt.x + Math.cos(ang) * dist, y0: pt.y + Math.sin(ang) * dist, x1: pt.x, y1: pt.y, arr: g.t0, s0: g.t0 - 0.08 };
   });
 
@@ -549,7 +563,7 @@ function drawStroke(s, q, t) {
   }
   if (s.head) {
     const live = (s.live = q > 0 && q < 1); s.head.setAttribute("opacity", live ? 1 : 0);
-    if (live) { s.pt = s.el.getPointAtLength(Math.floor((s.L * q) / s.gap) * s.gap); s.head.setAttribute("cx", f2(s.pt.x)); s.head.setAttribute("cy", f2(s.pt.y)); }
+    if (live) { s.pt = geometry(s.el).getPointAtLength(Math.floor((s.L * q) / s.gap) * s.gap); s.head.setAttribute("cx", f2(s.pt.x)); s.head.setAttribute("cy", f2(s.pt.y)); }
   }
 }
 

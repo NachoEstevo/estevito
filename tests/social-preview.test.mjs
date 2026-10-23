@@ -4,10 +4,11 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../social-preview.js', import.meta.url), 'utf8');
-function setup({ fail = false } = {}) {
+function setup({ fail = false, left = 100 } = {}) {
   const events = new Map();
   const attributes = new Set();
   const requests = [];
+  const positions = [];
   const images = ['ameyoko', 'blossoms', 'bellagio'].map(name => ({
     dataset: { src: `./assets/photo-${name}.webp` },
     set src(value) { requests.push(value); },
@@ -16,11 +17,11 @@ function setup({ fail = false } = {}) {
   const preview = {
     querySelectorAll: () => images,
     getBoundingClientRect: () => ({ width: 330 }),
-    style: { setProperty() {} },
+    style: { setProperty(name, value) { positions.push(value); } },
   };
   const link = {
     querySelector: () => preview,
-    getBoundingClientRect: () => ({ left: 100, width: 36 }),
+    getBoundingClientRect: () => ({ left, width: 36 }),
     addEventListener: (name, handler) => events.set(name, handler),
     setAttribute: name => attributes.add(name),
     removeAttribute: name => attributes.delete(name),
@@ -28,13 +29,18 @@ function setup({ fail = false } = {}) {
     matches: () => true,
   };
   vm.runInNewContext(source, {
-    document: { querySelector: () => link, addEventListener() {} },
+    document: { documentElement: { clientWidth: 390 }, querySelector: () => link, addEventListener() {} },
     window: { addEventListener() {} },
-    innerWidth: 390,
+    innerWidth: 454,
   });
-  return { events, attributes, requests };
+  return { events, attributes, requests, positions };
 }
 const settle = () => new Promise(resolve => setImmediate(resolve));
+
+test('fan clamps to the layout viewport even when mobile innerWidth expands', () => {
+  const { positions } = setup({ left: 300 });
+  assert.equal(positions.at(-1), '-109px');
+});
 
 test('decorative Pexels images do not request bytes on initial page load', () => {
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');

@@ -128,7 +128,11 @@
           observer.unobserve(entry.target);
           entry.target
             .querySelectorAll('.award-sticker')
-            .forEach(sticker => sticker.classList.add('is-revealed'));
+            .forEach(sticker => {
+              // Hand transform ownership to the float only after arrival ends.
+              sticker.addEventListener('animationend', () => sticker.classList.add('is-settled'), { once: true });
+              sticker.classList.add('is-revealed');
+            });
         });
       },
       { threshold: 0.12 }

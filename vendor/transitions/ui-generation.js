@@ -32,6 +32,22 @@
 import * as TIG from "./text-image-generation.js";
 
 const NS = "http://www.w3.org/2000/svg";
+// Local performance patch: immutable geometry lives outside the animated DOM.
+// Its coordinates remain identical; rendering and timing are unchanged.
+const geometryCache = new WeakMap();
+function geometry(el) {
+  // Basic SVG shapes need a rendered viewport to resolve their lengths.
+  // Absolute path data can be measured detached without changing coordinates.
+  if (el.localName !== 'path') return el;
+  let shape = geometryCache.get(el);
+  if (!shape) {
+    shape = el.cloneNode(false);
+    // Older engines may require rendered geometry even for paths.
+    try { shape.getTotalLength(); shape.getPointAtLength(0); } catch { shape = el; }
+    geometryCache.set(el, shape);
+  }
+  return shape;
+}
 const TEXT_IMAGE = ["text", "small-text", "image", "auto"]; // the variants text-image-generation.js draws
 // the text and image variants take the same modes: skeleton → trace, skeleton-texts → trace-texts
 const toTrace = (o) => Object.assign({}, o, { mode: /texts$/.test(o.mode || "") ? "trace-texts" : "trace" });
@@ -197,7 +213,7 @@ function buildOverlay(el, M, opts) {
   }
   G.maxD = maxD; G.span = h + 2 * MG;
 
-  const stroke = (d, parent, cls = "t-gen-wire", extra = {}) => { const e = svg("path", Object.assign({ d, class: cls }, extra), parent); return { el: e, L: e.getTotalLength(), gap: cls === "t-gen-guide" ? GUIDE_GAP : DOT_GAP }; };
+  const stroke = (d, parent, cls = "t-gen-wire", extra = {}) => { const e = svg("path", Object.assign({ d, class: cls }, extra), parent); return { el: e, L: geometry(e).getTotalLength(), gap: cls === "t-gen-guide" ? GUIDE_GAP : DOT_GAP }; };
   const head = (parent, r = 2.4) => svg("circle", { r, class: "t-gen-head", opacity: 0 }, parent);
 
   // probe, guides, size label
@@ -226,7 +242,7 @@ function buildOverlay(el, M, opts) {
       const [a, b, c, d] = src.m, k = Math.sqrt(Math.abs(a * d - b * c)) || 1;
       const g = svg("g", { transform: `matrix(${src.m.map((v) => (+v).toFixed(3)).join(" ")})`, style: `stroke-width:${(1.8 / k).toFixed(3)}` }, wire);
       const e = svg(src.tag, Object.assign({}, src.attrs, { class: "t-gen-wire" }), g);
-      strokes.push({ el: e, L: e.getTotalLength ? e.getTotalLength() : 0, gap: 3.6, k, local: g });
+      strokes.push({ el: e, L: e.getTotalLength ? geometry(e).getTotalLength() : 0, gap: 3.6, k, local: g });
     }
     if (!strokes.length) continue;
     strokes.forEach((s) => (s.head = head(s.local || wire, 2.4 / (s.k || 1))));
@@ -250,7 +266,7 @@ function buildOverlay(el, M, opts) {
   const inv = (f) => { let lo = 0, hi = 1; for (let i = 0; i < 26; i++) { const m = (lo + hi) / 2; if (OUT(m) < f) lo = m; else hi = m; } return lo; };
   G.flyers = [];
   for (let i = 0; i < 44; i++) {
-    const half = G.outline[i % 2], f = 0.06 + 0.9 * (Math.floor(i / 2) / 21), pt = half.el.getPointAtLength(half.L * f);
+    const half = G.outline[i % 2], f = 0.06 + 0.9 * (Math.floor(i / 2) / 21), pt = geometry(half.el).getPointAtLength(half.L * f);
     const ang = hashN(i * 9.1 + G.n) * Math.PI * 2, dist = 30 + 70 * hashN(i * 4.7 + G.n * 2), arr = PH.outline[0] + (PH.outline[1] - PH.outline[0]) * inv(f);
     G.flyers.push({ el: svg("circle", { r: 1.6, class: "t-gen-flyer", opacity: 0 }, root), x0: pt.x + Math.cos(ang) * dist, y0: pt.y + Math.sin(ang) * dist, x1: pt.x, y1: pt.y, arr, s0: arr - 0.09 });
   }
@@ -317,7 +333,7 @@ function drawStroke(s, q, t) {
   }
   if (s.head) {
     const live = (s.live = q > 0 && q < 1); s.head.setAttribute("opacity", live ? 1 : 0);
-    if (live) { const gap = s.gap / (s.k || 1); s.pt = s.el.getPointAtLength(Math.floor((s.L * q) / gap) * gap); s.head.setAttribute("cx", f2(s.pt.x)); s.head.setAttribute("cy", f2(s.pt.y)); }
+    if (live) { const gap = s.gap / (s.k || 1); s.pt = geometry(s.el).getPointAtLength(Math.floor((s.L * q) / gap) * gap); s.head.setAttribute("cx", f2(s.pt.x)); s.head.setAttribute("cy", f2(s.pt.y)); }
   }
   if (s.caps) { s.caps[0].setAttribute("opacity", on ? 1 : 0); s.caps[1].setAttribute("opacity", q >= 1 ? 1 : 0); }
 }

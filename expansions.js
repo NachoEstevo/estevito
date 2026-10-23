@@ -24,6 +24,20 @@
   }
   const projectsButton = document.querySelector('[data-i18n="allProjects"]');
   const projectsRegion = document.querySelector('#more-projects');
+  const mobileProjects = matchMedia('(max-width: 600px)');
+  const featuredGrid = projectsRegion.previousElementSibling;
+  const aceleraCard = projectsRegion.querySelector('[data-project="acelera"]').closest('.project');
+  const aceleraPosition = document.createComment('Acelera desktop position');
+  aceleraCard.before(aceleraPosition);
+  function placeAcelera() {
+    if (mobileProjects.matches) featuredGrid.append(aceleraCard);
+    else aceleraPosition.after(aceleraCard);
+  }
+  placeAcelera();
+  mobileProjects.addEventListener('change', async () => {
+    await window.cvProjects?.close();
+    placeAcelera();
+  });
   let projectsOpen = false,
     busyProjects = false;
   const hackathonSection = document.querySelector(

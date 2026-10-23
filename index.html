@@ -3,6 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // Before first paint: the runtime takes over each visible block without a flash.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('gen-boot');
+        window.cvBootTimer = setTimeout(() => {
+          window.cvBootExpired = true;
+          document.documentElement.classList.remove('gen-boot');
+          document.querySelectorAll('[data-gen-pending]').forEach(el => el.removeAttribute('data-gen-pending'));
+          document.dispatchEvent(new Event('cv:boot-timeout'));
+        }, 4000);
+      }
+    </script>
+    <style>.gen-boot .page { opacity: 0; } [data-gen-pending] { opacity: 0; } @media (prefers-reduced-motion: reduce), print { .gen-boot .page, [data-gen-pending] { opacity: 1; } }</style>
     <meta name="theme-color" content="#fafaf9" />
     <meta
       name="description"
@@ -31,7 +44,6 @@
     <meta name="twitter:image:alt" content="Ignacio Estevo y sus estampillas de viaje." />
     <link rel="canonical" href="https://nachoestevo.com/" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
     <script src="./i18n.js" defer=""></script>
     <script src="./script.js" defer=""></script>
     <script src="./social-preview.js" defer></script>
@@ -39,16 +51,9 @@
     <script src="./social-details.js" defer></script>
     <script src="./projects.js" defer=""></script>
     <script src="./activity.js" defer=""></script>
-    <script src="./generative.js" type="module"></script>
+    <script src="./generative.min.js" type="module"></script>
     <title>Ignacio Estevo</title>
-    <link rel="stylesheet" href="./activity.css" />
-    <link rel="stylesheet" href="./projects.css" />
-    <link rel="stylesheet" href="./awards.css" />
-    <link rel="stylesheet" href="./social-preview.css" />
-    <link rel="stylesheet" href="./vendor/transitions/ui-generation.css" />
-    <link rel="stylesheet" href="./vendor/transitions/text-image-generation.css" />
-    <link rel="stylesheet" href="./generative.css" />
-    <link rel="stylesheet" href="./refinements.css" />
+    <link rel="stylesheet" href="./site.min.css" />
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">Ir al contenido</a>
@@ -94,7 +99,7 @@
             title="Otra foto"
             ><img
               class="avatar"
-              src="./assets/portrait.webp"
+              src="./assets/portrait-thumb.webp"
               width="56"
               height="56"
               alt="Nacho entre luces rojas"
@@ -245,8 +250,8 @@
           <article class="project">
             <a class="project-link" href="https://rely.business" data-project="rely"
               ><div class="project-image">
-                <img
-                  src="./assets/rely.webp"
+                <img srcset="./assets/rely-thumb.webp 360w, ./assets/rely.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/rely-thumb.webp"
                   alt="Landing de Rely y vista de su panel para empresas"
                   width="640"
                   height="400"
@@ -270,8 +275,8 @@
           <article class="project">
             <a class="project-link" href="https://atrae.app" data-project="atrae"
               ><div class="project-image">
-                <img
-                  src="./assets/atrae.webp"
+                <img srcset="./assets/atrae-thumb.webp 360w, ./assets/atrae.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/atrae-thumb.webp"
                   alt="Interfaz de Atrae para buscar empresas y contactos"
                   width="640"
                   height="400"
@@ -282,7 +287,7 @@
               <h3>
                 <img
                   class="project-brand"
-                  src="./assets/brand/atrae-mark.webp"
+                  src="./assets/brand/atrae-mark-thumb.webp"
                   width="18"
                   height="18"
                   alt=""
@@ -302,8 +307,8 @@
               href="https://kyoto.nachoestevo.com"
               data-project="kyoto"
               ><div class="project-image">
-                <img
-                  src="./assets/kyoto.webp"
+                <img srcset="./assets/kyoto-thumb.webp 360w, ./assets/kyoto.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/kyoto-thumb.webp"
                   alt="Escena 3D de Fushimi Inari, entre árboles y puertas torii"
                   width="640"
                   height="400"
@@ -334,7 +339,7 @@
           <article class="project">
             <a class="project-link" href="https://acelera.agency" data-project="acelera">
               <div class="project-image">
-                <img src="./assets/acelera.webp" width="960" height="600" alt="Landing de Acelera: IA con sentido, donde el negocio lo pide." data-i18n-alt="aceleraProjectAlt" loading="lazy" decoding="async" />
+                <img srcset="./assets/acelera-thumb.webp 360w, ./assets/acelera.webp 960w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" src="./assets/acelera-thumb.webp" width="960" height="600" alt="Landing de Acelera: IA con sentido, donde el negocio lo pide." data-i18n-alt="aceleraProjectAlt" loading="lazy" decoding="async" />
               </div>
               <h3>Acelera</h3>
             </a>
@@ -345,7 +350,7 @@
             <article class="project">
               <a class="project-link" href="https://design.nachoestevo.com" data-project="design-vault">
                 <div class="project-image">
-                  <img src="./assets/design-vault.webp" width="960" height="600" alt="Landing de Design Vault" data-i18n-alt="designVaultAlt" loading="lazy" decoding="async" />
+                  <img srcset="./assets/design-vault-thumb.webp 360w, ./assets/design-vault.webp 960w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" src="./assets/design-vault-thumb.webp" width="960" height="600" alt="Landing de Design Vault" data-i18n-alt="designVaultAlt" loading="lazy" decoding="async" />
                 </div>
                 <h3>Design Vault</h3>
               </a>
@@ -394,18 +399,18 @@
               href="https://faro-argentina.vercel.app/"
               data-project="faro"
               ><div class="project-image">
-                <img
-                  src="./assets/faro.webp"
+                <img srcset="./assets/faro-thumb.webp 360w, ./assets/faro.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/faro-thumb.webp"
                   alt="Faro: mapa e investigación de obras públicas"
                   width="640"
                   height="400"
-                  loading="lazy"
+                  loading="eager" fetchpriority="high"
                   decoding="async"
                   data-i18n-alt="faroAlt"
                 />
                 <span class="award-sticker" aria-hidden="true"
                   ><img
-                    src="./assets/awards/first-place.webp"
+                    src="./assets/awards/first-place-thumb.webp"
                     width="60"
                     height="60"
                     alt=""
@@ -425,8 +430,8 @@
               href="https://vueltito.vercel.app/"
               data-project="vueltito"
               ><div class="project-image">
-                <img
-                  src="./assets/vueltito.webp"
+                <img srcset="./assets/vueltito-thumb.webp 360w, ./assets/vueltito.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/vueltito-thumb.webp"
                   alt="Vueltito: microdonaciones desde el checkout"
                   width="640"
                   height="400"
@@ -436,7 +441,7 @@
                 />
                 <span class="award-sticker" aria-hidden="true"
                   ><img
-                    src="./assets/awards/first-place.webp"
+                    src="./assets/awards/first-place-thumb.webp"
                     width="60"
                     height="60"
                     alt=""
@@ -456,8 +461,8 @@
               href="https://musa-landing-vercel.vercel.app/"
               data-project="musa"
               ><div class="project-image">
-                <img
-                  src="./assets/musa.webp"
+                <img srcset="./assets/musa-thumb.webp 360w, ./assets/musa.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/musa-thumb.webp"
                   width="640"
                   height="400"
                   alt="MUSA, accesibilidad musical con letras, visuales y vibraciones"
@@ -466,7 +471,7 @@
                   decoding="async"
                 /><span class="award-sticker" aria-hidden="true"
                   ><img
-                    src="./assets/awards/special-prize.webp"
+                    src="./assets/awards/special-prize-thumb.webp"
                     width="64"
                     height="64"
                     alt=""
@@ -486,8 +491,8 @@
               href="https://github.com/platanus-hack/platanus-hack-26-ar-team-10"
               data-project="yieldos"
               ><div class="project-image">
-                <img
-                  src="./assets/yieldos.webp"
+                <img srcset="./assets/yieldos-thumb.webp 360w, ./assets/yieldos.webp 640w" sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px" data-card-sizes="(max-width: 600px) calc((100vw - 64px) / 2), 328px"
+                  src="./assets/yieldos-thumb.webp"
                   alt="YieldOS: controles de seguridad para agentes de código"
                   width="640"
                   height="400"
@@ -600,7 +605,7 @@
         <h2 id="education-heading" data-i18n="education">En el camino</h2>
         <div class="experience">
           <span class="company-logo university-logo" aria-hidden="true"
-            ><img src="./assets/brand/austral-mark.webp" width="38" height="38" alt=""
+            ><img src="./assets/brand/austral-mark-thumb.webp" width="38" height="38" alt=""
           /></span>
           <div>
             <div class="experience-heading">
@@ -658,9 +663,9 @@
           <figure>
             <a class="photo-link" href="./assets/photo-bellagio.webp" data-photo="" data-story="33259674" data-stamp="./assets/postcard-europe.webp"
               ><img
-                src="./assets/photo-bellagio.webp"
-                width="600"
-                height="900"
+                src="./assets/photo-bellagio-thumb.webp"
+                width="440"
+                height="660"
                 alt="Torre de ladrillo rojo entre árboles en Bellagio, fotografiada por Nacho Estevo"
                 loading="lazy"
                 decoding="async"

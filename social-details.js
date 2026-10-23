@@ -25,7 +25,7 @@
       const width = panel.offsetWidth;
       panel.style.left = `${Math.max(
         8,
-        Math.min(rect.left + rect.width / 2 - width / 2, innerWidth - width - 8)
+        Math.min(rect.left + rect.width / 2 - width / 2, document.documentElement.clientWidth - width - 8)
       )}px`;
       const height = panel.offsetHeight;
       const above = rect.top >= height + 8;

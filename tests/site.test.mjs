@@ -44,3 +44,19 @@ test('profile media stays within the combined 50 KB budget', () => {
   }
   assert.ok(total < 50_000);
 });
+
+test('responsive project sources exist and retain originals for the reader', () => {
+  const html = read('index.html');
+  const sets = [...html.matchAll(/srcset="([^"]+)"/g)];
+  assert.equal(sets.length, 9);
+  for (const [, set] of sets) {
+    const sources = set.split(',').map(candidate => candidate.trim().split(/\s+/)[0]);
+    assert.equal(sources.length, 2);
+    assert.match(sources[0], /-thumb\.webp$/);
+    assert.doesNotMatch(sources[1], /-thumb\.webp$/);
+    for (const source of sources) assert.ok(existsSync(new URL(source, root)), source);
+    assert.ok(statSync(new URL(sources[0], root)).size < statSync(new URL(sources[1], root)).size);
+  }
+  assert.match(html, /href="\.\/assets\/photo-bellagio.webp"/);
+  assert.match(html, /src="\.\/assets\/photo-bellagio-thumb.webp"/);
+});

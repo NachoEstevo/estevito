@@ -9,7 +9,7 @@
     const origin = bounds.left + bounds.width / 2;
     const center = Math.max(
       width / 2 + 16,
-      Math.min(innerWidth - width / 2 - 16, origin)
+      Math.min(document.documentElement.clientWidth - width / 2 - 16, origin)
     );
     preview.style.setProperty('--preview-shift', `${center - origin}px`);
   }
@@ -53,5 +53,7 @@
   );
   window.addEventListener('resize', positionPreview);
   document.addEventListener('cv:languagechange', positionPreview);
+  // Social cards wrap the links in a later deferred script; measure their final positions.
+  document.addEventListener('DOMContentLoaded', positionPreview, { once: true });
   positionPreview();
 })();

@@ -399,6 +399,8 @@
     }
   }
   function resetCard() {
+    const thumbnail = sourceLink?.querySelector('.project-image > img');
+    if (thumbnail?.dataset.cardSizes) thumbnail.sizes = thumbnail.dataset.cardSizes;
     sourceLink?.closest('.project')?.classList.remove('project--open');
     sourceLink?.closest('.project-grid')?.classList.remove('project-grid--reading');
   }
@@ -409,6 +411,13 @@
     const currentRevision = ++revision;
     document.dispatchEvent(new Event('cv:interaction'));
     const image = nextLink.querySelector('.project-image');
+    const thumbnail = image.querySelector('img');
+    if (thumbnail?.srcset) {
+      // Always request the original in the reader, including on narrow screens.
+      thumbnail.sizes = '680px';
+      await thumbnail.decode().catch(() => {});
+      if (currentRevision !== revision) return;
+    }
     panel.setAttribute('aria-busy', 'true');
     await morph(() => {
       resetCard();
