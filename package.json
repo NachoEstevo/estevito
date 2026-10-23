@@ -4,7 +4,7 @@
   "private": true,
   "description": "Ignacio Estevo — personal website, projects and photography.",
   "engines": {
-    "node": ">=22"
+    "node": "22.x"
   },
   "scripts": {
     "start": "node scripts/serve.mjs",
