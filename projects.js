@@ -78,6 +78,30 @@
         action: 'Visit Atrae',
       },
     },
+    'design-vault': {
+      title: 'Design Vault',
+      url: 'https://design.nachoestevo.com',
+      es: {
+        role: 'Diseño · Herramientas para agentes',
+        summary: 'Que tus referencias no se queden guardadas.',
+        paragraphs: [
+          'Design Vault conecta una biblioteca de inspiración con el trabajo de diseño de un agente. Design Shelf permite guardar imágenes de X con notas y etiquetas para recuperar después lo que sirve para cada proyecto.',
+          'La skill trabaja con originales de tu biblioteca o con descripciones visuales compartidas. Las imágenes originales se mantienen privadas.',
+        ],
+        focus: 'Referencias visuales · Extensión de navegador · Skills',
+        action: 'Explorar Design Vault',
+      },
+      en: {
+        role: 'Design · Agent tools',
+        summary: 'Put your saved references to work.',
+        paragraphs: [
+          'Design Vault connects an inspiration library to an agent’s design work. Design Shelf saves images from X with notes and tags so useful references can be retrieved for each project.',
+          'The skill works with originals from your library or shared visual descriptions. Original images stay private.',
+        ],
+        focus: 'Visual references · Browser extension · Skills',
+        action: 'Explore Design Vault',
+      },
+    },
     acelera: {
       title: 'Acelera',
       url: 'https://acelera.agency',

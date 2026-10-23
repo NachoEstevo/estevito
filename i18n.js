@@ -5,7 +5,11 @@ const pageCopy = {
     work: 'Lo que estoy construyendo',
     allProjects: 'Todos los proyectos',
     voceroDescription: 'Flujos de voz para operaciones reales.',
-    aceleraProjectDescription: 'De una idea a un producto en uso.',
+    designVaultDescription: 'De lo que guardás a lo que construís.',
+    designVaultNote: 'Skill de diseño',
+    designVaultAlt: 'Landing de Design Vault',
+    aceleraProjectDescription: 'Agencia de desarrollo de software',
+    aceleraProjectNote: 'CoFounder',
     aceleraProjectAlt: 'Landing de Acelera: IA con sentido, donde el negocio lo pide.',
     hackathons: 'Hecho en hackathons',
     githubCode: 'Código en GitHub',
@@ -84,7 +88,7 @@ const pageCopy = {
     githubAvatarAlt: 'Mi avatar de GitHub: un conejo ilustrado',
     title: 'Ignacio Estevo',
     description:
-      'Nacho Estevo. Software, productos e IA desde Buenos Aires. Cofundador de Acelera y Rely. Proyectos, actividad y algunas fotos.',
+      'Soy Nacho Estevo. Construyo productos en Acelera y Rely. Un vistazo a mis proyectos, experimentos y las historias detrás de mis fotos.',
     musaDescription: 'Otra forma de sentir la música.',
     musaNote: 'Premio especial · Musicathon 2026',
     musaAlt: 'MUSA, accesibilidad musical con letras, visuales y vibraciones',
@@ -94,7 +98,11 @@ const pageCopy = {
     work: 'What I’m building',
     allProjects: 'All projects',
     voceroDescription: 'Voice workflows for real operations.',
-    aceleraProjectDescription: 'From an idea to a product in use.',
+    designVaultDescription: 'From what you save to what you build.',
+    designVaultNote: 'Design skill',
+    designVaultAlt: 'Design Vault landing page',
+    aceleraProjectDescription: 'Software development agency',
+    aceleraProjectNote: 'CoFounder',
     aceleraProjectAlt: 'Acelera landing page: purposeful AI, where business needs it.',
     hackathons: 'Built at hackathons',
     githubCode: 'Code on GitHub',
@@ -171,7 +179,7 @@ const pageCopy = {
     githubAvatarAlt: 'My GitHub avatar: an illustrated rabbit',
     title: 'Ignacio Estevo',
     description:
-      'Nacho Estevo. Software, products, and AI from Buenos Aires. Co-founder of Acelera and Rely. Projects, activity, and photographs.',
+      'I build products at Acelera and Rely. A glimpse into my projects, experiments, and the stories behind my photographs.',
     musaDescription: 'Another way to feel the music.',
     musaNote: 'Special prize · Musicathon 2026',
     musaAlt: 'MUSA: music accessibility through lyrics, visuals, and haptics',
@@ -215,6 +223,9 @@ const pageCopy = {
     document.querySelector('meta[name="description"]').content = t('description');
     document.querySelector('meta[property="og:title"]').content = t('title');
     document.querySelector('meta[property="og:description"]').content = t('description');
+    document.querySelector('meta[property="og:locale"]').content = language === 'es' ? 'es_AR' : 'en_US';
+    document.querySelector('meta[name="twitter:title"]').content = t('title');
+    document.querySelector('meta[name="twitter:description"]').content = t('description');
     if (persist) {
       try {
         localStorage.setItem('nacho-cv-language', language);
