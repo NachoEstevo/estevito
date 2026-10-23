@@ -50,8 +50,53 @@
     document.querySelector('.contact-links a[href="https://x.com/Nachoestevo"]'),
     'x'
   );
+  popover(document.querySelector('.photos-section .section-copy a[href*="pexels.com"]'), 'pexels');
+  popover(document.querySelector('.photos-section .section-copy a[href*="unsplash.com"]'), 'unsplash');
+
+  // Public profile snapshots checked on 2026-10-23; Pexels rounds its total.
+  // Unsplash views and Top 10% were supplied by Ignacio from his statistics.
+  function renderPhotography(panel, kind) {
+    panel.replaceChildren();
+    panel.classList.add('photography-popover');
+    const header = document.createElement('div');
+    header.className = 'social-card-header';
+    const avatar = document.createElement('img');
+    avatar.src = './assets/social/photography-avatar.webp';
+    avatar.alt = '';
+    avatar.width = 40;
+    avatar.height = 40;
+    avatar.decoding = 'async';
+    const identity = document.createElement('div');
+    const title = document.createElement('strong');
+    title.textContent = 'Ignacio Estevo';
+    const handle = document.createElement('small');
+    const platform = kind === 'pexels' ? 'Pexels' : 'Unsplash';
+    handle.textContent = `${platform} · @nachoestevo`;
+    identity.append(title, handle);
+    header.append(avatar, identity);
+    const metric = document.createElement('div');
+    metric.className = 'social-card-metric';
+    const count = document.createElement('strong');
+    count.textContent = kind === 'pexels'
+      ? (en() ? '3.5M' : '3,5 M')
+      : (en() ? '2.1M' : '2,1 M');
+    const label = document.createElement('span');
+    label.textContent = en() ? 'total views' : 'visitas totales';
+    metric.append(count, label);
+    const bio = document.createElement('p');
+    bio.className = 'social-profile-copy';
+    bio.textContent = kind === 'unsplash'
+      ? (en() ? 'Top 10% · 238 published photos' : 'Top 10% · 238 fotos publicadas')
+      : 'Wandering mind · Buenos Aires';
+    panel.append(header, metric, bio);
+  }
   function render() {
     for (const { panel, kind, link: profileLink, position } of popovers) {
+      if (kind === 'pexels' || kind === 'unsplash') {
+        renderPhotography(panel, kind);
+        position();
+        continue;
+      }
       const profile = kind === 'linkedin' || kind === 'x';
       if (!profile && !data) continue;
       panel.replaceChildren();

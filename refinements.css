@@ -643,3 +643,39 @@
   }
   .photo-dialog--story .photo-story-body { font-size: 22px; }
 }
+
+/* Compact photography profiles reuse the existing docked popover behavior. */
+.social-popover.photography-popover {
+  width: min(276px, calc(100vw - 24px));
+  padding: 18px;
+  border-radius: 22px;
+}
+.photography-popover .social-card-header {
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.photography-popover .social-card-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.photography-popover .social-card-header strong {
+  font-size: 14px;
+}
+.photography-popover .social-card-header small {
+  font-size: 10px;
+}
+.photography-popover .social-card-metric {
+  gap: 9px;
+  margin-bottom: 8px;
+}
+.photography-popover .social-card-metric strong {
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+}
+.photography-popover .social-profile-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
