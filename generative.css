@@ -1,0 +1,10 @@
+:root {
+  --tig-surface: var(--paper);
+  --gen-surface: var(--paper);
+}
+@media print {
+  .t-tig,
+  .t-gen {
+    display: none !important;
+  }
+}

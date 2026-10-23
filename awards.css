@@ -1,0 +1,75 @@
+/* The card owns placement; the wrapper tilts and its image gently floats. */
+.award-sticker {
+  --award-angle: -8deg;
+  --award-hover-angle: 3deg;
+  --award-duration: 4.8s;
+  transform: rotate(var(--award-angle));
+  transform-origin: 50% 55%;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project:nth-child(even) .award-sticker {
+  --award-angle: 7deg;
+  --award-hover-angle: -5deg;
+  --award-duration: 5.4s;
+}
+
+.project-image .award-sticker img {
+  transform-origin: 50% 55%;
+  animation: award-float var(--award-duration) ease-in-out infinite;
+  transition: none;
+}
+
+/* Added once by the project grid's existing intersection observer. */
+.project-image .award-sticker.is-revealed img {
+  animation: award-arrive 760ms cubic-bezier(0.22, 1, 0.36, 1) both,
+    award-float var(--award-duration) ease-in-out 760ms infinite;
+}
+
+.project-link:is(:hover, :focus-visible) .award-sticker {
+  transform: translateY(-2px) rotate(var(--award-hover-angle)) scale(1.12);
+}
+
+@keyframes award-arrive {
+  0% {
+    opacity: 0.3;
+    transform: translateY(12px) rotate(-22deg) scale(0.45);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-3px) rotate(4deg) scale(1.13);
+  }
+  80% {
+    transform: translateY(1px) rotate(-2deg) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
+  }
+}
+
+@keyframes award-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .award-sticker {
+    transition: none;
+  }
+
+  .project-image .award-sticker img,
+  .project-image .award-sticker.is-revealed img {
+    animation: none;
+    transform: none;
+  }
+
+  .project-link:is(:hover, :focus-visible) .award-sticker {
+    transform: rotate(var(--award-angle));
+  }
+}

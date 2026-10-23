@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fafaf9" />
+    <meta
+      name="description"
+      content="Nacho Estevo. Software, productos e IA desde Buenos Aires. Cofundador de Acelera y Rely. Proyectos, actividad y algunas fotos."
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Nacho Estevo — Productos, código y otras cosas" />
+    <meta
+      property="og:description"
+      content="Lo que construyo, en qué estoy trabajando y algunas cosas fuera de la pantalla."
+    />
+    <meta property="og:url" content="https://cv.nachoestevo.com/" />
+    <meta property="og:image" content="https://cv.nachoestevo.com/assets/kyoto.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://cv.nachoestevo.com/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./i18n.js" defer=""></script>
+    <script src="./script.js" defer=""></script>
+    <script src="./social-preview.js" defer></script>
+    <script src="./expansions.js" defer></script>
+    <script src="./social-details.js" defer></script>
+    <script src="./projects.js" defer=""></script>
+    <script src="./activity.js" defer=""></script>
+    <script src="./generative.js" type="module"></script>
+    <title>Ignacio Estevo</title>
+    <link rel="stylesheet" href="./activity.css" />
+    <link rel="stylesheet" href="./projects.css" />
+    <link rel="stylesheet" href="./awards.css" />
+    <link rel="stylesheet" href="./social-preview.css" />
+    <link rel="stylesheet" href="./vendor/transitions/ui-generation.css" />
+    <link rel="stylesheet" href="./vendor/transitions/text-image-generation.css" />
+    <link rel="stylesheet" href="./generative.css" />
+    <link rel="stylesheet" href="./refinements.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Ir al contenido</a>
+    <main id="main" class="page">
+      <header class="intro">
+        <div class="page-tools">
+          <button
+            class="toolbar-button language-toggle"
+            type="button"
+            data-language-toggle=""
+            hidden=""
+            aria-label="Read in English"
+            lang="en"
+          >
+            EN</button
+          ><button
+            class="toolbar-button theme-toggle"
+            type="button"
+            data-theme-toggle=""
+            hidden=""
+            aria-label="Activar modo oscuro"
+          >
+            <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <g class="sun-rays">
+                <path
+                  d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+                ></path>
+              </g>
+              <circle class="sun-core" cx="12" cy="12" r="4"></circle>
+              <path
+                class="moon-shape"
+                d="M20.2 15.1A8.2 8.2 0 0 1 8.9 3.8 8.3 8.3 0 1 0 20.2 15.1Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="identity">
+          <a
+            class="avatar-button"
+            href="./assets/portrait.webp"
+            data-avatar=""
+            aria-label="Ver mi avatar de GitHub"
+            title="Otra foto"
+            ><img
+              class="avatar"
+              src="./assets/portrait.webp"
+              width="56"
+              height="56"
+              alt="Nacho entre luces rojas"
+              fetchpriority="high"
+              data-i18n-alt="portraitAlt"
+          /></a>
+          <div>
+            <h1>Nacho Estevo</h1>
+            <p class="location">Buenos Aires, Argentina</p>
+          </div>
+        </div>
+        <div class="intro-copy">
+          <p data-i18n-html="bio0">
+            Soy ingeniero de software. Construyo productos web y herramientas con IA, con
+            la misma atención a cómo funcionan y a cómo se sienten.
+          </p>
+          <p data-i18n-html="bio1">
+            Cofundé <a href="https://acelera.agency">Acelera</a> y
+            <a href="https://rely.business">Rely</a>. Entre proyectos, hackathons y
+            experimentos, también encuentro tiempo para la fotografía. Acá hay un poco de
+            todo eso.
+          </p>
+        </div>
+        <nav
+          class="contact-links"
+          aria-label="Contacto y perfiles"
+          data-i18n-aria-label="contactNav"
+        >
+          <a
+            class="email-link"
+            href="mailto:igestevo@gmail.com"
+            data-copy-email=""
+            data-i18n-aria-label="emailCopy"
+            aria-label="Copiar dirección de email"
+            >igestevo@gmail.com</a
+          >
+
+          <a
+            class="icon-button social-link linkedin"
+            href="https://www.linkedin.com/in/ignacio-estevo/"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+            ><img
+              class="brand-icon brand-on-light"
+              src="./assets/brand/linkedin.webp"
+              width="18"
+              height="18"
+              alt="" /><img
+              class="brand-icon brand-on-dark"
+              src="./assets/brand/linkedin-light.webp"
+              width="18"
+              height="18"
+              alt=""
+          /></a>
+          <a
+            class="icon-button social-link"
+            href="https://github.com/NachoEstevo"
+            aria-label="GitHub"
+            title="GitHub"
+            ><img
+              class="brand-icon brand-on-light"
+              src="./assets/brand/github.svg"
+              width="19"
+              height="19"
+              alt="" /><img
+              class="brand-icon brand-on-dark"
+              src="./assets/brand/github-light.svg"
+              width="19"
+              height="19"
+              alt=""
+          /></a>
+          <a
+            class="icon-button social-link tokens-link"
+            href="#activity"
+            aria-label="Actividad de GitHub y Tokscale"
+            title="Actividad"
+            data-i18n-aria-label="activityLink"
+            data-i18n-title="activityTitle"
+            ><svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M4 20V10m5 10V4m5 16v-7m5 7V7M2 20h20"></path></svg
+          ></a>
+
+          <a
+            class="icon-button social-link pexels-link"
+            href="https://www.pexels.com/es-es/@nachoestevo/"
+            aria-label="Pexels — mis fotografías"
+            data-i18n-aria-label="pexelsProfile"
+          >
+            <img
+              class="brand-icon"
+              src="./assets/brand/pexels.svg"
+              width="18"
+              height="18"
+              alt=""
+            />
+            <span class="pexels-preview" aria-hidden="true">
+              <span class="pexels-photo"
+                ><img
+                  data-src="./assets/photo-ameyoko.webp"
+                  width="419"
+                  height="700"
+                  alt=""
+                  decoding="async"
+              /></span>
+              <span class="pexels-photo"
+                ><img
+                  data-src="./assets/photo-blossoms.webp"
+                  width="394"
+                  height="700"
+                  alt=""
+                  decoding="async"
+              /></span>
+              <span class="pexels-photo"
+                ><img
+                  data-src="./assets/photo-bellagio.webp"
+                  width="394"
+                  height="700"
+                  alt=""
+                  decoding="async"
+              /></span>
+            </span>
+          </a>
+          <a
+            class="icon-button social-link x-link"
+            href="https://x.com/Nachoestevo"
+            aria-label="X — @Nachoestevo"
+            title="X"
+          >
+            <span class="x-mark" aria-hidden="true"></span>
+          </a>
+        </nav>
+        <p class="print-contact">
+          igestevo@gmail.com · nachoestevo.com · github.com/NachoEstevo
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="work-heading">
+        <div class="section-heading">
+          <h2 id="work-heading" data-i18n="work">Lo que estoy construyendo</h2>
+          <a
+            class="quiet-link"
+            href="https://nachoestevo.com/projects"
+            data-i18n="allProjects"
+            >Todos los proyectos</a
+          >
+        </div>
+        <div class="project-grid">
+          <article class="project">
+            <a class="project-link" href="https://rely.business" data-project="rely"
+              ><div class="project-image">
+                <img
+                  src="./assets/rely.webp"
+                  alt="Landing de Rely y vista de su panel para empresas"
+                  width="640"
+                  height="400"
+                  decoding="async"
+                  data-i18n-alt="relyAlt"
+                />
+              </div>
+              <h3>
+                <img
+                  class="project-brand"
+                  src="./assets/brand/rely-mark.webp"
+                  width="18"
+                  height="18"
+                  alt=""
+                />Rely
+              </h3></a
+            >
+            <p data-i18n="relyDescription">Crear y gestionar una empresa en EE. UU.</p>
+            <span class="project-note" data-i18n="relyNote">CoFounder</span>
+          </article>
+          <article class="project">
+            <a class="project-link" href="https://atrae.app" data-project="atrae"
+              ><div class="project-image">
+                <img
+                  src="./assets/atrae.webp"
+                  alt="Interfaz de Atrae para buscar empresas y contactos"
+                  width="640"
+                  height="400"
+                  decoding="async"
+                  data-i18n-alt="atraeAlt"
+                />
+              </div>
+              <h3>
+                <img
+                  class="project-brand"
+                  src="./assets/brand/atrae-mark.webp"
+                  width="18"
+                  height="18"
+                  alt=""
+                />Atrae
+              </h3></a
+            >
+            <p data-i18n="atraeDescription">
+              De una idea de cliente a una lista de prospectos.
+            </p>
+            <span class="project-note" data-i18n="atraeNote"
+              >En Acelera · En desarrollo</span
+            >
+          </article>
+          <article class="project">
+            <a
+              class="project-link"
+              href="https://kyoto.nachoestevo.com"
+              data-project="kyoto"
+              ><div class="project-image">
+                <img
+                  src="./assets/kyoto.webp"
+                  alt="Escena 3D de Fushimi Inari, entre árboles y puertas torii"
+                  width="640"
+                  height="400"
+                  decoding="async"
+                  data-i18n-alt="kyotoAlt"
+                />
+              </div>
+              <h3>
+                <img
+                  class="project-brand"
+                  src="./assets/brand/kyoto-mark.webp"
+                  width="18"
+                  height="18"
+                  alt=""
+                />Kyoto
+              </h3></a
+            >
+            <p data-i18n="kyotoDescription">
+              Un paseo entre torii. Una exploración en 3D.
+            </p>
+            <span class="project-note" data-i18n="kyotoNote"
+              >Experimento · Próximamente</span
+            >
+          </article>
+        </div>
+        <div id="more-projects" class="expand-region" hidden>
+          <div class="project-grid more-project-grid">
+            <article class="project">
+              <a
+                class="project-link"
+                href="mailto:igestevo@gmail.com"
+                data-project="vocero"
+              >
+                <div class="project-image">
+                  <img
+                    src="./assets/vocero.webp"
+                    width="960"
+                    height="600"
+                    alt="Vocero — voice workflows"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3>Vocero</h3>
+              </a>
+              <p data-i18n="voceroDescription">Flujos de voz para operaciones reales.</p>
+              <span class="project-note">Founder</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="experiments-heading">
+        <div class="section-heading">
+          <h2 id="experiments-heading" data-i18n="hackathons">Hecho en hackathons</h2>
+          <a
+            class="quiet-link"
+            href="https://github.com/NachoEstevo"
+            data-i18n="githubCode"
+            >Código en GitHub</a
+          >
+        </div>
+        <div class="project-grid hackathon-grid">
+          <article class="project">
+            <a
+              class="project-link"
+              href="https://faro-argentina.vercel.app/"
+              data-project="faro"
+              ><div class="project-image">
+                <img
+                  src="./assets/faro.webp"
+                  alt="Faro: mapa e investigación de obras públicas"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  data-i18n-alt="faroAlt"
+                />
+                <span class="award-sticker" aria-hidden="true"
+                  ><img
+                    src="./assets/awards/first-place.webp"
+                    width="60"
+                    height="60"
+                    alt=""
+                    loading="lazy"
+                /></span>
+              </div>
+              <h3>Faro</h3></a
+            >
+            <p data-i18n="faroDescription">Datos públicos que se pueden investigar.</p>
+            <span class="project-note" data-i18n="faroNote"
+              >Primer puesto · Hack@Latam</span
+            >
+          </article>
+          <article class="project">
+            <a
+              class="project-link"
+              href="https://vueltito.vercel.app/"
+              data-project="vueltito"
+              ><div class="project-image">
+                <img
+                  src="./assets/vueltito.webp"
+                  alt="Vueltito: microdonaciones desde el checkout"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  data-i18n-alt="vueltitoAlt"
+                />
+                <span class="award-sticker" aria-hidden="true"
+                  ><img
+                    src="./assets/awards/first-place.webp"
+                    width="60"
+                    height="60"
+                    alt=""
+                    loading="lazy"
+                /></span>
+              </div>
+              <h3>Vueltito</h3></a
+            >
+            <p data-i18n="vueltitoDescription">Pequeñas donaciones, desde cada compra.</p>
+            <span class="project-note" data-i18n="vueltitoNote"
+              >Primer puesto · Hackathon</span
+            >
+          </article>
+          <article class="project">
+            <a
+              class="project-link"
+              href="https://musa-landing-vercel.vercel.app/"
+              data-project="musa"
+              ><div class="project-image">
+                <img
+                  src="./assets/musa.webp"
+                  width="640"
+                  height="400"
+                  alt="MUSA, accesibilidad musical con letras, visuales y vibraciones"
+                  data-i18n-alt="musaAlt"
+                  loading="lazy"
+                  decoding="async"
+                /><span class="award-sticker" aria-hidden="true"
+                  ><img
+                    src="./assets/awards/special-prize.webp"
+                    width="64"
+                    height="64"
+                    alt=""
+                    loading="lazy"
+                /></span>
+              </div>
+              <h3>MUSA</h3></a
+            >
+            <p data-i18n="musaDescription">Otra forma de sentir la música.</p>
+            <span class="project-note" data-i18n="musaNote"
+              >Premio especial · Musicathon 2026</span
+            >
+          </article>
+          <article class="project">
+            <a
+              class="project-link"
+              href="https://github.com/platanus-hack/platanus-hack-26-ar-team-10"
+              data-project="yieldos"
+              ><div class="project-image">
+                <img
+                  src="./assets/yieldos.webp"
+                  alt="YieldOS: controles de seguridad para agentes de código"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  data-i18n-alt="yieldosAlt"
+                />
+              </div>
+              <h3>YieldOS</h3></a
+            >
+            <p data-i18n="yieldosDescription">
+              Controles de seguridad para agentes de código.
+            </p>
+            <span class="project-note" data-i18n="yieldosNote">Platanus Hack 26</span>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="activity"
+        class="section activity-section"
+        aria-labelledby="activity-heading"
+      >
+        <div class="section-heading">
+          <h2 id="activity-heading" data-i18n="activity">Detrás de los proyectos</h2>
+          <span class="section-aside" data-i18n="activityAside">Actividad pública</span>
+        </div>
+        <div class="activity-grid">
+          <div class="activity-panel" data-github-activity="">
+            <div class="activity-heading">
+              <h3><a href="https://github.com/NachoEstevo">GitHub</a></h3>
+              <p class="activity-total" data-github-summary=""></p>
+            </div>
+            <div
+              class="heatmap"
+              data-github-grid=""
+              aria-label="Actividad de GitHub"
+            ></div>
+            <p class="activity-status" data-github-status="" role="status">
+              Consultá mis contribuciones y commits en
+              <a href="https://github.com/NachoEstevo">GitHub</a>.
+            </p>
+          </div>
+          <div class="activity-panel tokens-panel" data-tokscale-activity="">
+            <div class="activity-heading">
+              <h3><a href="https://tokscale.ai/u/NachoEstevo">Tokscale</a></h3>
+              <p class="activity-total" data-tokscale-summary=""></p>
+            </div>
+            <div
+              class="heatmap"
+              data-tokscale-grid=""
+              aria-label="Uso público de tokens en Tokscale"
+            ></div>
+            <p class="activity-status" data-tokscale-status="" role="status">
+              Uso de herramientas de IA, desde mi perfil público de Tokscale.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="now-heading">
+        <h2 id="now-heading" data-i18n="now">Actualmente</h2>
+        <div class="experience-list">
+          <article class="experience">
+            <a
+              class="company-logo acelera-logo"
+              href="https://acelera.agency"
+              aria-label="Acelera"
+              ><img src="./assets/brand/acelera-mark.webp" width="38" height="38" alt=""
+            /></a>
+            <div>
+              <div class="experience-heading">
+                <h3><a href="https://acelera.agency">Acelera</a></h3>
+                <span data-i18n="aceleraDates">2025 — hoy</span>
+              </div>
+              <p class="experience-role" data-i18n="aceleraRole">
+                Cofundador · AI Product Engineer
+              </p>
+              <p data-i18n="aceleraDescription">
+                De la primera conversación a un producto en uso. Software a medida,
+                herramientas con IA y Atrae.
+              </p>
+            </div>
+          </article>
+          <article class="experience">
+            <a
+              class="company-logo rely-logo"
+              href="https://rely.business"
+              aria-label="Rely"
+              ><img src="./assets/brand/rely-mark.webp" width="38" height="38" alt=""
+            /></a>
+            <div>
+              <div class="experience-heading">
+                <h3><a href="https://rely.business">Rely</a></h3>
+                <span data-i18n="relyDates">2023 — hoy</span>
+              </div>
+              <p class="experience-role" data-i18n="relyRole">
+                Cofundador · Lead Engineer
+              </p>
+              <p data-i18n="relyDescription">
+                Una plataforma para crear y gestionar empresas en EE. UU. Trabajo en el
+                producto, el onboarding y los sistemas que lo hacen funcionar.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section education-section" aria-labelledby="education-heading">
+        <h2 id="education-heading" data-i18n="education">En el camino</h2>
+        <div class="experience">
+          <span class="company-logo university-logo" aria-hidden="true"
+            ><img src="./assets/brand/austral-mark.webp" width="38" height="38" alt=""
+          /></span>
+          <div>
+            <div class="experience-heading">
+              <h3>Universidad Austral</h3>
+              <span data-i18n="graduated">Graduado en 2026</span>
+            </div>
+            <p data-i18n="degree">Ingeniería Informática.</p>
+            <p class="experience-role" data-i18n="languages">
+              Español nativo · Inglés C1 Advanced
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section photos-section" aria-labelledby="photos-heading">
+        <div class="section-heading">
+          <h2 id="photos-heading" data-i18n="photos">Fuera de la pantalla</h2>
+          <a
+            class="quiet-link"
+            href="https://www.pexels.com/@nachoestevo/"
+            data-i18n="allPhotos"
+            >Más fotografías</a
+          >
+        </div>
+        <p class="section-copy" data-i18n="photosIntro">
+          Lugares, luces y detalles que me hacen frenar un momento.
+        </p>
+        <div class="photo-strip">
+          <figure>
+            <a class="photo-link" href="./assets/photo-ameyoko.webp" data-photo=""
+              ><img
+                src="./assets/photo-ameyoko.webp"
+                width="419"
+                height="700"
+                alt="Carteles luminosos del mercado Ameyoko, fotografiados por Nacho Estevo"
+                loading="lazy"
+                decoding="async"
+                data-i18n-alt="photoAmeyokoAlt"
+            /></a>
+            <figcaption data-i18n="photoAmeyoko">Luces de Ameyoko</figcaption>
+          </figure>
+          <figure>
+            <a class="photo-link" href="./assets/photo-blossoms.webp" data-photo=""
+              ><img
+                src="./assets/photo-blossoms.webp"
+                width="394"
+                height="700"
+                alt="Flores rosadas contra el cielo azul, fotografiadas por Nacho Estevo"
+                loading="lazy"
+                decoding="async"
+                data-i18n-alt="photoBlossomsAlt"
+            /></a>
+            <figcaption data-i18n="photoBlossoms">Osaka, Japón</figcaption>
+          </figure>
+          <figure>
+            <a class="photo-link" href="./assets/photo-bellagio.webp" data-photo=""
+              ><img
+                src="./assets/photo-bellagio.webp"
+                width="600"
+                height="900"
+                alt="Torre de ladrillo rojo entre árboles en Bellagio, fotografiada por Nacho Estevo"
+                loading="lazy"
+                decoding="async"
+                data-i18n-alt="photoBellagioAlt"
+            /></a>
+            <figcaption data-i18n="photoBellagio">Bellagio, Italia</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-note">
+          <p data-i18n="contactPrompt">¿Tenés algo en mente?</p>
+          <a href="mailto:igestevo@gmail.com" data-i18n="letsTalk">Hablemos.</a>
+        </div>
+        <div class="footer-links">
+          <nav aria-label="Más de Nacho" data-i18n-aria-label="footerNav">
+            <a href="https://nachoestevo.com">Portfolio</a
+            ><a href="https://design.nachoestevo.com">Design</a
+            ><button
+              class="text-button"
+              type="button"
+              data-print=""
+              hidden=""
+              data-i18n="saveCV"
+            >
+              Guardar CV
+            </button>
+          </nav>
+        </div>
+      </footer>
+    </main>
+    <dialog class="photo-dialog" aria-labelledby="photo-caption">
+      <figure>
+        <img alt="" width="1000" height="1000" />
+        <figcaption id="photo-caption"></figcaption>
+      </figure>
+    </dialog>
+
+    <div class="toast" role="status" aria-live="polite" aria-atomic="true">
+      <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"></path></svg
+      ><span data-toast-text=""></span>
+    </div>
+  </body>
+</html>
