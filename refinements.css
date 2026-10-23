@@ -563,3 +563,67 @@
     min-height: 44px;
   }
 }
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('./assets/fonts/caveat-latin.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+.photo-dialog--story[open] {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  width: min(920px, 90vw);
+}
+.photo-dialog--story figure { min-width: 0; padding: 7px; align-self: center; }
+.photo-dialog--story figure img {
+  width: 100%;
+  box-sizing: border-box;
+  border: 6px solid #f7f5ef;
+  border-bottom-width: 14px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgb(25 36 45 / .12);
+}
+.photo-dialog--story .photo-story {
+  position: relative;
+  border-left: 1px dashed var(--line);
+  padding: 120px 24px 28px 28px;
+  align-self: stretch;
+}
+.postcard-mark {
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  width: 84px;
+  height: 104px;
+  object-fit: contain;
+  transform: rotate(7deg);
+}
+.photo-story h2 {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.photo-story-body {
+  --ruled-line: 32px;
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: var(--ruled-line);
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 30px, var(--line) 30px, var(--line) 31px, transparent 31px, transparent var(--ruled-line));
+}
+.photo-story-body p { margin: 0; }
+.photo-story-body p + p { margin-top: var(--ruled-line); }
+@media (max-width: 600px) {
+  .photo-dialog--story[open] { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .photo-dialog--story figure img { max-height: 52svh; }
+  .photo-dialog--story .photo-story {
+    border-left: 0;
+    border-top: 1px dashed var(--line);
+    padding: 120px 12px 20px;
+  }
+}

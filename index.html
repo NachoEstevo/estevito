@@ -319,6 +319,17 @@
         </div>
         <div id="more-projects" class="expand-region" hidden>
           <div class="project-grid more-project-grid">
+          <article class="project">
+            <a class="project-link" href="https://acelera.agency" data-project="acelera">
+              <div class="project-image">
+                <img src="./assets/acelera.webp" width="960" height="600" alt="Landing de Acelera: IA con sentido, donde el negocio lo pide." data-i18n-alt="aceleraProjectAlt" loading="lazy" decoding="async" />
+              </div>
+              <h3>Acelera</h3>
+            </a>
+            <p data-i18n="aceleraProjectDescription">De una idea a un producto en uso.</p>
+            <span class="project-note">CoFounder</span>
+          </article>
+
             <article class="project">
               <a
                 class="project-link"
@@ -338,7 +349,7 @@
                 <h3>Vocero</h3>
               </a>
               <p data-i18n="voceroDescription">Flujos de voz para operaciones reales.</p>
-              <span class="project-note">Founder</span>
+              <span class="project-note">Voice Agents</span>
             </article>
           </div>
         </div>
@@ -597,33 +608,33 @@
         </p>
         <div class="photo-strip">
           <figure>
-            <a class="photo-link" href="./assets/photo-ameyoko.webp" data-photo=""
+            <a class="photo-link" href="./assets/photos/13203424-full.webp" data-photo="" data-story="13203424" data-stamp="./assets/postcard-chalten.webp"
               ><img
-                src="./assets/photo-ameyoko.webp"
-                width="419"
-                height="700"
-                alt="Carteles luminosos del mercado Ameyoko, fotografiados por Nacho Estevo"
+                src="./assets/photos/13203424-thumb.webp"
+                width="423"
+                height="640"
+                alt="Camino entre montañas hacia El Chaltén"
                 loading="lazy"
                 decoding="async"
-                data-i18n-alt="photoAmeyokoAlt"
+                data-i18n-alt="photoChaltenAlt"
             /></a>
-            <figcaption data-i18n="photoAmeyoko">Luces de Ameyoko</figcaption>
+            <figcaption hidden data-i18n="photoChalten">El Chaltén, Argentina</figcaption>
           </figure>
           <figure>
-            <a class="photo-link" href="./assets/photo-blossoms.webp" data-photo=""
+            <a class="photo-link" href="./assets/photos/36889413-full.webp" data-photo="" data-story="36889413" data-stamp="./assets/postcard-japan-friends.webp"
               ><img
-                src="./assets/photo-blossoms.webp"
-                width="394"
-                height="700"
-                alt="Flores rosadas contra el cielo azul, fotografiadas por Nacho Estevo"
+                src="./assets/photos/36889413-thumb.webp"
+                width="432"
+                height="640"
+                alt="Monje japonés con sombrero de paja"
                 loading="lazy"
                 decoding="async"
-                data-i18n-alt="photoBlossomsAlt"
+                data-i18n-alt="photoMonkAlt"
             /></a>
-            <figcaption data-i18n="photoBlossoms">Osaka, Japón</figcaption>
+            <figcaption hidden data-i18n="photoMonk">Monje, Japón</figcaption>
           </figure>
           <figure>
-            <a class="photo-link" href="./assets/photo-bellagio.webp" data-photo=""
+            <a class="photo-link" href="./assets/photo-bellagio.webp" data-photo="" data-story="33259674" data-stamp="./assets/postcard-europe.webp"
               ><img
                 src="./assets/photo-bellagio.webp"
                 width="600"
@@ -633,7 +644,7 @@
                 decoding="async"
                 data-i18n-alt="photoBellagioAlt"
             /></a>
-            <figcaption data-i18n="photoBellagio">Bellagio, Italia</figcaption>
+            <figcaption hidden data-i18n="photoBellagio">Bellagio, Italia</figcaption>
           </figure>
         </div>
       </section>
@@ -641,21 +652,11 @@
       <footer class="footer">
         <div class="footer-note">
           <p data-i18n="contactPrompt">¿Tenés algo en mente?</p>
-          <a href="mailto:igestevo@gmail.com" data-i18n="letsTalk">Hablemos.</a>
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=igestevo%40gmail.com" target="_blank" rel="noopener noreferrer" data-i18n="letsTalk">Hablemos.</a>
         </div>
         <div class="footer-links">
           <nav aria-label="Más de Nacho" data-i18n-aria-label="footerNav">
-            <a href="https://nachoestevo.com">Portfolio</a
-            ><a href="https://design.nachoestevo.com">Design</a
-            ><button
-              class="text-button"
-              type="button"
-              data-print=""
-              hidden=""
-              data-i18n="saveCV"
-            >
-              Guardar CV
-            </button>
+            <a href="https://design.nachoestevo.com">Design</a>
           </nav>
         </div>
       </footer>
@@ -665,6 +666,11 @@
         <img alt="" width="1000" height="1000" />
         <figcaption id="photo-caption"></figcaption>
       </figure>
+      <article class="photo-story" hidden>
+        <img class="postcard-mark" width="84" height="104" alt="" aria-hidden="true" decoding="async" />
+        <h2 id="photo-story-title">Detrás de la foto</h2>
+        <div class="photo-story-body"></div>
+      </article>
     </dialog>
 
     <div class="toast" role="status" aria-live="polite" aria-atomic="true">

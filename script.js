@@ -14,9 +14,6 @@
     animation.finished.catch(() => {}).finally(() => runningAnimations.delete(animation));
     return animation;
   }
-  const printButton = document.querySelector('[data-print]');
-  printButton.hidden = false;
-  printButton.addEventListener('click', () => window.print());
 
   const email = document.querySelector('[data-copy-email]');
   const toast = document.querySelector('.toast');
@@ -178,8 +175,44 @@
   });
   const photoDialog = document.querySelector('.photo-dialog');
   let activePhotoLink;
+  let photoStories;
+  let storiesRequest;
+  const storyPanel = photoDialog.querySelector('.photo-story');
+  function syncStory() {
+    const id = activePhotoLink?.dataset.story;
+    storyPanel.hidden = !id;
+    photoDialog.querySelector('figcaption').hidden = Boolean(id);
+    photoDialog.setAttribute('aria-labelledby', id ? 'photo-story-title' : 'photo-caption');
+    if (id) {
+      const stamp = storyPanel.querySelector('.postcard-mark');
+      const source = activePhotoLink.dataset.stamp;
+      if (stamp.getAttribute('src') !== source) stamp.setAttribute('src', source);
+    }
+    photoDialog.classList.toggle('photo-dialog--story', Boolean(id));
+    const body = storyPanel.querySelector('.photo-story-body');
+    body.replaceChildren();
+    if (!id) return;
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+    const story = photoStories?.[id]?.[lang];
+    storyPanel.querySelector('h2').textContent = story?.title || t('photoStoryHeading');
+    const paragraphs = story?.paragraphs || [];
+    for (const text of paragraphs.length ? paragraphs : [t('photoStoryPending')]) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = text;
+      body.append(paragraph);
+    }
+  }
+  function loadStories() {
+    if (photoStories || storiesRequest) return;
+    storiesRequest = fetch('./data/photo-stories.json', { signal: AbortSignal.timeout(6000) })
+      .then(response => { if (!response.ok) throw new Error('Stories unavailable'); return response.json(); })
+      .then(data => { photoStories = data; syncStory(); })
+      .catch(() => {})
+      .finally(() => { storiesRequest = null; });
+  }
   function syncPhoto() {
     if (!activePhotoLink) return;
+    syncStory();
     photoDialog.querySelector('img').alt = activePhotoLink.querySelector('img').alt;
     photoDialog.querySelector('figcaption').textContent = activePhotoLink
       .closest('figure')
@@ -192,6 +225,7 @@
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
       activePhotoLink = link;
+      if (link.dataset.story) loadStories();
       photoDialog.querySelector('img').src = link.href;
       syncPhoto();
       photoDialog.showModal();

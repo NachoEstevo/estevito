@@ -74,6 +74,8 @@
         additionalCards.forEach(({ card }) =>
           projectsRegion.querySelector('.project-grid').append(card)
         );
+        const vocero = projectsRegion.querySelector('[data-project="vocero"]').closest('.project');
+        projectsRegion.querySelector('.project-grid').append(vocero);
         hackathonSection.hidden = true;
       } else {
         additionalCards.forEach(({ card, marker }) => marker.after(card));

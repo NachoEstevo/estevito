@@ -6,7 +6,7 @@
       title: 'Vocero',
       url: 'mailto:igestevo@gmail.com',
       es: {
-        role: 'Founder',
+        role: 'Voice Agents',
         summary: 'Flujos de voz para operaciones reales.',
         paragraphs: [
           'Una plataforma privada para explorar agentes de voz, transferencias a personas, integraciones y control operativo.',
@@ -16,7 +16,7 @@
         action: 'Conversar sobre Vocero',
       },
       en: {
-        role: 'Founder',
+        role: 'Voice Agents',
         summary: 'Voice workflows for real operations.',
         paragraphs: [
           'A private platform exploring voice agents, human handoff, integrations, and operational control.',
@@ -76,6 +76,30 @@
         focus: 'AI agents · B2B search · Data workflows',
         caption: 'Landing and product workspace shown on Atrae’s public website.',
         action: 'Visit Atrae',
+      },
+    },
+    acelera: {
+      title: 'Acelera',
+      url: 'https://acelera.agency',
+      es: {
+        role: 'CoFounder',
+        summary: 'De una idea a un producto en uso.',
+        paragraphs: [
+          'En Acelera construimos software a medida y herramientas con inteligencia artificial. De la primera conversación al diseño y desarrollo del producto.',
+          'Como cofundador, trabajo en producto, diseño e ingeniería. También construimos productos propios, como Atrae.',
+        ],
+        focus: 'Producto · Software a medida · Inteligencia artificial',
+        action: 'Visitar Acelera',
+      },
+      en: {
+        role: 'CoFounder',
+        summary: 'From an idea to a product in use.',
+        paragraphs: [
+          'At Acelera we build custom software and AI tools. From the first conversation to product design and development.',
+          'As co-founder, I work across product, design and engineering. We also build our own products, including Atrae.',
+        ],
+        focus: 'Product · Custom software · Artificial intelligence',
+        action: 'Visit Acelera',
       },
     },
     kyoto: {
