@@ -50,6 +50,7 @@ document.addEventListener('cv:generate', event => {
   const el = event.detail.element;
   const run = generate(el, {
     variant: 'auto',
+    parent: event.detail.parent,
     mode: 'skeleton',
     fadeStagger: null,
     display: 22,

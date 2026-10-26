@@ -9,7 +9,7 @@
       const animation = region.animate(
         open
           ? [
-              { height: '0px', opacity: 0 },
+              { height: '0px', opacity: 1 },
               { height: `${height}px`, opacity: 1 },
             ]
           : [
@@ -84,7 +84,6 @@
       await window.cvProjects?.close();
       projectsOpen = !projectsOpen;
       if (projectsOpen) {
-        projectsRegion.style.visibility = 'hidden';
         additionalCards.forEach(({ card }) =>
           projectsRegion.querySelector('.project-grid').append(card)
         );
@@ -97,21 +96,23 @@
       }
       projectsButton.setAttribute('aria-expanded', String(projectsOpen));
       labels();
-      await expand(projectsRegion, projectsOpen);
       if (projectsOpen) {
-        await Promise.all(
-          [...projectsRegion.querySelectorAll('img')].map(
-            image => ((image.loading = 'eager'), image.decode().catch(() => {}))
-          )
-        );
-        // Same task: the runtime hides content before the browser can paint it.
-        projectsRegion.style.visibility = '';
+        projectsRegion.hidden = false;
+        projectsRegion.querySelectorAll('img').forEach(image => {
+          image.loading = 'eager';
+          image.decode().catch(() => {});
+        });
+        // Trace the full-size grid inside its clipping region. The drawing and
+        // height animation start in the same task, before real cards can paint.
         document.dispatchEvent(
-          new CustomEvent('cv:generate', { detail: { element: projectsRegion } })
+          new CustomEvent('cv:generate', { detail: {
+            element: projectsRegion.querySelector('.project-grid'),
+            parent: projectsRegion,
+          } })
         );
       }
+      await expand(projectsRegion, projectsOpen);
     } finally {
-      projectsRegion.style.visibility = '';
       busyProjects = false;
     }
   });
