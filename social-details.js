@@ -1,5 +1,6 @@
 (() => {
   let data, activity;
+  let started = false;
   const en = () => document.documentElement.lang === 'en';
   const usd = value =>
     new Intl.NumberFormat(en() ? 'en-US' : 'es-AR', {
@@ -36,9 +37,13 @@
         `${rect.left + rect.width / 2 - parseFloat(panel.style.left)}px`
       );
     }
-    wrap.addEventListener('pointerenter', position);
-    wrap.addEventListener('focusin', position);
-    popovers.push({ panel, kind, link, position });
+    const reveal = () => {
+      start();
+      position();
+    };
+    wrap.addEventListener('pointerenter', reveal);
+    wrap.addEventListener('focusin', reveal);
+    popovers.push({ panel, kind, link, position, wrap });
   }
   popover(
     document.querySelector('.contact-links a[href="https://github.com/NachoEstevo"]'),
@@ -91,6 +96,8 @@
     panel.append(header, metric, bio);
   }
   function render() {
+    // Cards are hover details: their images and data stay off the first load.
+    if (!started) return;
     for (const { panel, kind, link: profileLink, position } of popovers) {
       if (kind === 'pexels' || kind === 'unsplash') {
         renderPhotography(panel, kind);
@@ -266,25 +273,37 @@
     activity = event.detail;
     render();
   });
-  window.addEventListener('resize', () => popovers.forEach(({ position }) => position()));
-  window.addEventListener(
-    'scroll',
-    () => popovers.forEach(({ position }) => position()),
-    { passive: true }
-  );
-  render();
-  fetch('./data/social.json', { signal: AbortSignal.timeout(6000) })
-    .then(r => {
-      if (!r.ok) throw new Error('Unavailable');
-      return r.json();
-    })
-    .then(value => {
-      data = value;
-      render();
-    })
-    .catch(() => {
-      popovers
-        .filter(({ kind }) => kind === 'github' || kind === 'tokscale')
-        .forEach(({ panel }) => panel.remove());
+  // Hidden cards are measured again when they open; only a visible one follows the page.
+  const repositionOpen = () =>
+    popovers.forEach(({ position, wrap }) => {
+      if (wrap.matches(':hover, :focus-within')) position();
     });
+  window.addEventListener('resize', repositionOpen);
+  window.addEventListener('scroll', repositionOpen, { passive: true });
+  function start() {
+    if (started) return;
+    started = true;
+    render();
+    fetch('./data/social.json', { signal: AbortSignal.timeout(6000) })
+      .then(r => {
+        if (!r.ok) throw new Error('Unavailable');
+        return r.json();
+      })
+      .then(value => {
+        data = value;
+        render();
+      })
+      .catch(() => {
+        popovers
+          .filter(({ kind }) => kind === 'github' || kind === 'tokscale')
+          .forEach(({ panel }) => panel.remove());
+      });
+  }
+  // After the page has loaded and the main thread is free, or on the first hover or focus.
+  const whenIdle = () =>
+    window.requestIdleCallback
+      ? requestIdleCallback(start, { timeout: 3000 })
+      : setTimeout(start, 1200);
+  if (document.readyState === 'complete') whenIdle();
+  else window.addEventListener('load', whenIdle, { once: true });
 })();

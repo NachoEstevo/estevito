@@ -9,6 +9,9 @@ const styles = ['styles.css', 'activity.css', 'projects.css', 'awards.css',
 await Promise.all([
   build({ absWorkingDir: root, entryPoints: ['generative.js'], outfile: 'generative.min.js',
     bundle: true, minify: true, format: 'esm', target: 'es2022', legalComments: 'eof' }),
+  // One deferred request instead of seven; the sources stay separate and readable.
+  build({ absWorkingDir: root, entryPoints: ['site.js'], outfile: 'site.min.js',
+    bundle: true, minify: true, format: 'iife', target: 'es2022', legalComments: 'eof' }),
   build({ absWorkingDir: root, stdin: { contents: styles.map(path => `@import './${path}';`).join('\n'),
     loader: 'css', resolveDir: root }, outfile: 'site.min.css', bundle: true,
     minify: true, external: ['./assets/*'], legalComments: 'eof' }),

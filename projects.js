@@ -344,8 +344,26 @@
     return { content, heading };
   }
 
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+  // The reader shows the original image. Fetch and decode it on intent (hover, focus,
+  // press) so the click itself never waits for the network.
+  const originals = new Map();
+  function warm(link) {
+    const source = link
+      .querySelector('.project-image > img')
+      ?.srcset?.split(',')
+      .pop()
+      .trim()
+      .split(/\s+/)[0];
+    if (!source || originals.has(source)) return;
+    const original = new Image();
+    original.src = source;
+    originals.set(source, original);
+    original.decode().catch(() => {});
+  }
+
   let layoutTransition;
-  async function morph(change, image) {
+  async function morph(change, image, direction) {
     stopAnimations();
     if (layoutTransition) {
       const previous = layoutTransition;
@@ -358,28 +376,50 @@
       !reducedMotion.matches &&
       !document.documentElement.hasAttribute('data-theme-reveal')
     ) {
-      document.documentElement.dataset.projectMorph = '';
+      document.documentElement.dataset.projectMorph = direction;
+      // Everything that reflows around the image glides with it: the other sections and
+      // the image's own neighbours inside its section.
+      const section = image.closest('.section');
       const siblings = [
         ...document.querySelectorAll('.page > .section, .page > .footer'),
-      ].filter(section => !section.contains(image));
+      ].flatMap(block =>
+        block === section
+          ? [...block.children].filter(child => !child.contains(image))
+          : [block]
+      );
       siblings.forEach(
-        (section, index) => (section.style.viewTransitionName = `project-flow-${index}`)
+        (block, index) => (block.style.viewTransitionName = `project-flow-${index}`)
       );
       image.style.viewTransitionName = 'selected-project';
+      // The copy enters and leaves on its own, shorter timing.
+      panel.style.viewTransitionName = 'project-detail';
       const transition = document.startViewTransition(change);
       layoutTransition = transition;
+      // An interrupted or skipped morph is expected; only `finished` is awaited.
+      transition.ready.catch(() => {});
+      transition.updateCallbackDone.catch(() => {});
       try {
         await transition.finished;
       } catch {
       } finally {
         image.style.viewTransitionName = '';
-        siblings.forEach(section => (section.style.viewTransitionName = ''));
+        panel.style.viewTransitionName = '';
+        siblings.forEach(block => (block.style.viewTransitionName = ''));
         delete document.documentElement.dataset.projectMorph;
         if (layoutTransition === transition) layoutTransition = null;
       }
     } else {
       change();
       const after = image?.getBoundingClientRect();
+      if (!panel.hidden)
+        animate(
+          panel,
+          [
+            { opacity: 0, transform: 'translateY(12px)' },
+            { opacity: 1, transform: 'none' },
+          ],
+          380
+        );
       if (before && after?.width)
         await animate(
           image,
@@ -412,8 +452,11 @@
     const thumbnail = image.querySelector('img');
     if (thumbnail?.srcset) {
       // Always request the original in the reader, including on narrow screens.
+      // It is normally warm already; on a slow connection the morph starts on time
+      // with the thumbnail and the original replaces it when it arrives.
+      warm(nextLink);
       thumbnail.sizes = '680px';
-      await thumbnail.decode().catch(() => {});
+      await Promise.race([thumbnail.decode().catch(() => {}), wait(150)]);
       if (currentRevision !== revision) return;
     }
     panel.setAttribute('aria-busy', 'true');
@@ -438,7 +481,7 @@
           behavior: 'instant',
         });
       }
-    }, image);
+    }, image, 'open');
     if (currentRevision !== revision) return;
     panel.removeAttribute('aria-busy');
     const heading = panel.querySelector('h3');
@@ -456,7 +499,7 @@
         resetCard();
         activeId = null;
         links.forEach(item => item.setAttribute('aria-expanded', 'false'));
-      }, link.querySelector('.project-image'));
+      }, link.querySelector('.project-image'), 'close');
       if (focus) link.focus({ preventScroll: true });
     } finally {
       closing = false;
@@ -491,9 +534,13 @@
     link.setAttribute('href', `#project-${link.dataset.project}`);
     link.setAttribute('aria-controls', panel.id);
     link.setAttribute('aria-expanded', 'false');
+    for (const intent of ['pointerenter', 'pointerdown', 'focus'])
+      link.addEventListener(intent, () => warm(link), { passive: true });
     link.addEventListener('click', event => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
+      // The second half of a double click must not reverse what the first half started.
+      if (event.detail > 1) return;
       const id = link.dataset.project;
       if (activeId === id) return requestClose();
       // Only one history entry per open reader. Back closes it to the previous section.
@@ -501,6 +548,21 @@
       history[method]({ ...history.state, cvProject: true }, '', `#project-${id}`);
       showProject(id, { focus: true, scroll: true });
     });
+  });
+  // While a morph runs the browser sends every click to the root element. The reader is
+  // already laid out underneath, so a click where its close button sits still closes it.
+  document.addEventListener('click', event => {
+    if (!layoutTransition || !activeId || event.target !== document.documentElement)
+      return;
+    const bounds = panel.querySelector('.project-detail-close')?.getBoundingClientRect();
+    if (
+      bounds &&
+      event.clientX >= bounds.left &&
+      event.clientX <= bounds.right &&
+      event.clientY >= bounds.top &&
+      event.clientY <= bounds.bottom
+    )
+      requestClose();
   });
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape' || !activeId || document.querySelector('dialog[open]'))

@@ -29,10 +29,6 @@
 .project--open .project-detail-body {
   margin-top: 16px;
 }
-::view-transition-group(selected-project) {
-  animation-duration: 620ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
 ::view-transition-old(selected-project),
 ::view-transition-new(selected-project) {
   height: 100%;
@@ -247,9 +243,6 @@
   .social-popover,
   .extra-photos img {
     transition: none;
-  }
-  ::view-transition-group(selected-project) {
-    animation: none;
   }
 }
 .intro-copy a:not([href*='acelera'])::after {
@@ -493,14 +486,71 @@
   transform: none;
   transition: none;
 }
+/* Opening takes its time to land; closing gets out of the way. Everything that moves
+   shares one duration and curve, so the image and the page travel as a single piece. */
+:root[data-project-morph='open'] {
+  --project-morph: 520ms;
+}
+:root[data-project-morph='close'] {
+  --project-morph: 400ms;
+}
 :root[data-project-morph]::view-transition-group(*) {
-  animation-duration: 620ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-duration: var(--project-morph);
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
 }
 ::view-transition-image-pair(selected-project) {
   overflow: clip;
   border-radius: 7px;
   isolation: isolate;
+}
+/* The outgoing image stays solid underneath while the incoming one sharpens over it,
+   so the crop never dips towards the background mid-flight. */
+:root[data-project-morph]::view-transition-old(selected-project) {
+  animation: none;
+  opacity: 1;
+}
+:root[data-project-morph]::view-transition-new(selected-project) {
+  animation: project-sharpen 200ms ease-out both;
+}
+/* Unchanged page content cross-fades in place; keep both halves symmetric. */
+:root[data-project-morph]::view-transition-old(root),
+:root[data-project-morph]::view-transition-new(root) {
+  animation-duration: 240ms;
+  animation-timing-function: ease-out;
+}
+/* The copy arrives once the image is most of the way there, and leaves first. */
+::view-transition-new(project-detail):only-child {
+  animation: project-detail-in 380ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+}
+::view-transition-old(project-detail):only-child {
+  animation: project-detail-out 140ms ease-out both;
+}
+@keyframes project-sharpen {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes project-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes project-detail-out {
+  to {
+    opacity: 0;
+  }
+}
+/* A pressed card answers before the reader opens. */
+.project-image {
+  transition: transform 160ms var(--ease);
+}
+.project:not(.project--open) > .project-link:active .project-image {
+  transform: scale(0.985);
+}
+:root[data-project-morph] .project-image {
+  transform: none;
+  transition: none;
 }
 .photography-mode [data-i18n='allPhotos'],
 .photography-mode [data-i18n='allPhotos']:hover {
@@ -542,12 +592,6 @@
 
 .project-link:hover .project-image > img {
   transform: none;
-}
-:root[data-project-morph]::view-transition-old(root),
-:root[data-project-morph]::view-transition-new(root),
-:root[data-project-morph]::view-transition-old(selected-project),
-:root[data-project-morph]::view-transition-new(selected-project) {
-  animation-duration: 620ms;
 }
 
 /* Keep the gallery heading and return action readable on narrow phones. */

@@ -14,6 +14,14 @@ Project thumbnails now have responsive candidates. Opening a project requests an
 
 `npm ci && npm run build` regenerates `site.min.css` and `generative.min.js` using a pinned development-only esbuild. The static site still needs no runtime dependencies or application server. Edit the original CSS/JS files, then regenerate; CI checks that the committed outputs match their sources. The upstream Transitions.dev license remains in `vendor/transitions/LICENSE.txt`.
 
+## Loading and project motion pass — November 11, 2026
+
+The seven deferred interaction scripts now ship as one minified `site.min.js` (about 81 KB of source in seven requests, 53 KB in one before transfer compression). `site.js` is the entry and keeps the original order; edit the individual sources and run `npm run build`. CI also checks `site.min.js` against its sources. `/assets/*` is served with a one-day browser cache plus stale-while-revalidate; a replaced asset that keeps its file name can therefore take up to a day to reach a returning visitor. Social hover cards render, and request `data/social.json` and their images, after the page has loaded and the main thread is idle, or on the first hover or focus. Hidden hover cards are no longer re-measured on every scroll event.
+
+Opening a project no longer waits on the network: the original image is requested on hover, focus or press, and the click waits at most 150 ms before the morph starts with the thumbnail. The morph runs 520 ms opening and 400 ms closing on one shared curve; the copy enters after the image is under way and leaves first; the close button answers during the morph; a double click leaves the reader open.
+
+Measured in headless Chrome 157 at 1280 × 900 with 120 ms added latency and about 4 Mbps down. Click to first animated frame: 813 ms cold and 489 ms after hovering on the published site, against about 200 ms cold and 63 ms after hovering locally. These are single runs on one machine, the local server adds no real network distance, and frame pacing in headless Chrome is not evidence of smoothness on a phone. Escape mid-morph, close-button click mid-morph, double click, and open/close at 390 × 844 ended in the expected state with no console errors. No Lighthouse run, Safari, Firefox or physical-device pass was made.
+
 ## Mobile acceptance — local Chromium
 
 Browser access was available for this pass. Checked responsive widths of 320, 390 and 430 CSS px, plus 844 × 390 landscape: no horizontal document overflow, project expansion and close, seven additional projects, nine gallery photographs, postcard scrolling and outside-click/Escape dismissal, dark mode and ES/EN. The project hero aligned 24 px below the top on expansion. The lightbox stayed within the landscape viewport and scrolled internally. No JavaScript warnings or errors were observed in the checked flows.

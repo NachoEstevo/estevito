@@ -14,6 +14,18 @@ test('local markup assets and stylesheet references resolve', () => {
   assert.doesNotMatch(html, /class="dialog-close"|class="toolkit"/);
 });
 
+test('interaction scripts ship as one deferred bundle in their original order', () => {
+  const html = read('index.html');
+  const order = ['i18n', 'script', 'social-preview', 'expansions', 'social-details', 'projects', 'activity'];
+  assert.deepEqual(
+    [...read('site.js').matchAll(/^import '\.\/([\w-]+)\.js';$/gm)].map(match => match[1]),
+    order
+  );
+  assert.match(html, /<script src="\.\/site\.min\.js" defer><\/script>/);
+  for (const name of order) assert.doesNotMatch(html, new RegExp(`src="\\./${name}\\.js"`));
+  assert.ok(statSync(new URL('site.min.js', root)).size < 70_000);
+});
+
 test('replacement gallery photos have optimized local files and bilingual captions', () => {
   const photos = JSON.parse(read('data/photos.json')).photos;
   assert.equal(new Set(photos.map(photo => photo.id)).size, photos.length);

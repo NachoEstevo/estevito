@@ -1,15 +1,29 @@
 {
   "commits": [
     {
-      "repo": "NachoEstevo/design-vault",
-      "url": "https://github.com/NachoEstevo/design-vault/commit/ddd771a3ac1d392f7c5e523996ca510c8e318bee",
-      "sha": "ddd771a3ac1d392f7c5e523996ca510c8e318bee",
-      "message": "docs: add tested npx installation directly from GitHub",
-      "date": "2026-10-23T05:30:22Z"
+      "repo": "NachoEstevo/fushimi-inari-world",
+      "sha": "f093acef8dbc29d8a34ec3f02db5928c604006a3",
+      "url": "https://github.com/NachoEstevo/fushimi-inari-world/commit/f093acef8dbc29d8a34ec3f02db5928c604006a3",
+      "message": "Add recessed bottle mouths beneath opening caps",
+      "date": "2026-11-05T20:53:01Z"
+    },
+    {
+      "repo": "NachoEstevo/fushimi-inari-world",
+      "sha": "d99e138458a4af12618e37157c659997adf8882a",
+      "url": "https://github.com/NachoEstevo/fushimi-inari-world/commit/d99e138458a4af12618e37157c659997adf8882a",
+      "message": "Refine vending machines, food props and contextual commerce audio",
+      "date": "2026-11-05T20:48:38Z"
+    },
+    {
+      "repo": "NachoEstevo/fushimi-inari-world",
+      "sha": "80a90ed9f2b4607754e027d2c40f0e347bcbe15e",
+      "url": "https://github.com/NachoEstevo/fushimi-inari-world/commit/80a90ed9f2b4607754e027d2c40f0e347bcbe15e",
+      "message": "Bring visitors and shared food/drink interactions to life; add optional quiet walks",
+      "date": "2026-11-05T20:05:41Z"
     }
   ],
-  "costUSD": 45084.8012,
-  "tokenTotal": 73375895047,
+  "costUSD": 47974.2728,
+  "tokenTotal": 86673110516,
   "dailyCosts": [
     {
       "date": "2025-05-06",
@@ -853,7 +867,7 @@
     },
     {
       "date": "2026-08-03",
-      "costUSD": 115.3629
+      "costUSD": 136.9955
     },
     {
       "date": "2026-08-04",
@@ -1053,7 +1067,7 @@
     },
     {
       "date": "2026-09-28",
-      "costUSD": 833.4538
+      "costUSD": 836.3158000000001
     },
     {
       "date": "2026-09-29",
@@ -1145,7 +1159,7 @@
     },
     {
       "date": "2026-10-21",
-      "costUSD": 579.3004
+      "costUSD": 580.912
     },
     {
       "date": "2026-10-22",
@@ -1169,7 +1183,59 @@
     },
     {
       "date": "2026-10-27",
-      "costUSD": 120.5481
+      "costUSD": 209.85680000000002
+    },
+    {
+      "date": "2026-10-28",
+      "costUSD": 277.6242
+    },
+    {
+      "date": "2026-10-29",
+      "costUSD": 28.8767
+    },
+    {
+      "date": "2026-10-30",
+      "costUSD": 91.4762
+    },
+    {
+      "date": "2026-10-31",
+      "costUSD": 465.825
+    },
+    {
+      "date": "2026-11-01",
+      "costUSD": 77.8964
+    },
+    {
+      "date": "2026-11-02",
+      "costUSD": 152.21959999999999
+    },
+    {
+      "date": "2026-11-03",
+      "costUSD": 257.2279
+    },
+    {
+      "date": "2026-11-04",
+      "costUSD": 225.437
+    },
+    {
+      "date": "2026-11-05",
+      "costUSD": 471.4633
+    },
+    {
+      "date": "2026-11-06",
+      "costUSD": 408.2049
+    },
+    {
+      "date": "2026-11-07",
+      "costUSD": 216.2638
+    },
+    {
+      "date": "2026-11-08",
+      "costUSD": 14.899
+    },
+    {
+      "date": "2026-11-09",
+      "costUSD": 86.6427
     }
   ]
 }

@@ -6,84 +6,14 @@
     "username": "NachoEstevo",
     "profileUrl": "https://github.com/NachoEstevo",
     "sourceUrl": "https://github.com/users/NachoEstevo/contributions",
-    "fetchedAt": "2026-10-27T19:08:09.571Z",
+    "fetchedAt": "2026-11-11T23:43:12.529Z",
     "period": {
-      "start": "2025-10-26",
-      "end": "2026-10-27",
-      "days": 367
+      "start": "2025-11-09",
+      "end": "2026-11-11",
+      "days": 368
     },
-    "total": 5105,
+    "total": 5428,
     "days": [
-      {
-        "date": "2025-10-26",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-27",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-28",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-10-29",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-30",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-10-31",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-01",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-02",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-03",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-04",
-        "count": 22,
-        "level": 2
-      },
-      {
-        "date": "2025-11-05",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-06",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-11-07",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-08",
-        "count": 23,
-        "level": 2
-      },
       {
         "date": "2025-11-09",
         "count": 37,
@@ -601,7 +531,7 @@
       },
       {
         "date": "2026-02-20",
-        "count": 15,
+        "count": 14,
         "level": 1
       },
       {
@@ -831,7 +761,7 @@
       },
       {
         "date": "2026-04-07",
-        "count": 17,
+        "count": 16,
         "level": 1
       },
       {
@@ -846,7 +776,7 @@
       },
       {
         "date": "2026-04-10",
-        "count": 30,
+        "count": 29,
         "level": 2
       },
       {
@@ -856,7 +786,7 @@
       },
       {
         "date": "2026-04-12",
-        "count": 40,
+        "count": 39,
         "level": 2
       },
       {
@@ -866,12 +796,12 @@
       },
       {
         "date": "2026-04-14",
-        "count": 71,
+        "count": 70,
         "level": 4
       },
       {
         "date": "2026-04-15",
-        "count": 47,
+        "count": 46,
         "level": 3
       },
       {
@@ -906,12 +836,12 @@
       },
       {
         "date": "2026-04-22",
-        "count": 26,
+        "count": 25,
         "level": 2
       },
       {
         "date": "2026-04-23",
-        "count": 40,
+        "count": 39,
         "level": 2
       },
       {
@@ -921,7 +851,7 @@
       },
       {
         "date": "2026-04-25",
-        "count": 19,
+        "count": 18,
         "level": 1
       },
       {
@@ -1741,52 +1671,52 @@
       },
       {
         "date": "2026-10-06",
-        "count": 41,
+        "count": 42,
         "level": 2
       },
       {
         "date": "2026-10-07",
-        "count": 26,
+        "count": 37,
         "level": 2
       },
       {
         "date": "2026-10-08",
-        "count": 8,
+        "count": 17,
         "level": 1
       },
       {
         "date": "2026-10-09",
-        "count": 6,
+        "count": 15,
         "level": 1
       },
       {
         "date": "2026-10-10",
-        "count": 0,
-        "level": 0
+        "count": 14,
+        "level": 1
       },
       {
         "date": "2026-10-11",
-        "count": 2,
+        "count": 14,
         "level": 1
       },
       {
         "date": "2026-10-12",
-        "count": 21,
-        "level": 1
+        "count": 39,
+        "level": 2
       },
       {
         "date": "2026-10-13",
-        "count": 27,
+        "count": 36,
         "level": 2
       },
       {
         "date": "2026-10-14",
-        "count": 7,
-        "level": 1
+        "count": 28,
+        "level": 2
       },
       {
         "date": "2026-10-15",
-        "count": 12,
+        "count": 17,
         "level": 1
       },
       {
@@ -1806,7 +1736,7 @@
       },
       {
         "date": "2026-10-19",
-        "count": 20,
+        "count": 21,
         "level": 1
       },
       {
@@ -1816,17 +1746,17 @@
       },
       {
         "date": "2026-10-21",
-        "count": 29,
+        "count": 30,
         "level": 2
       },
       {
         "date": "2026-10-22",
-        "count": 47,
+        "count": 48,
         "level": 3
       },
       {
         "date": "2026-10-23",
-        "count": 36,
+        "count": 39,
         "level": 2
       },
       {
@@ -1841,12 +1771,87 @@
       },
       {
         "date": "2026-10-26",
-        "count": 55,
+        "count": 61,
         "level": 3
       },
       {
         "date": "2026-10-27",
+        "count": 14,
+        "level": 1
+      },
+      {
+        "date": "2026-10-28",
+        "count": 18,
+        "level": 1
+      },
+      {
+        "date": "2026-10-29",
+        "count": 1,
+        "level": 1
+      },
+      {
+        "date": "2026-10-30",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-10-31",
+        "count": 12,
+        "level": 1
+      },
+      {
+        "date": "2026-11-01",
         "count": 8,
+        "level": 1
+      },
+      {
+        "date": "2026-11-02",
+        "count": 25,
+        "level": 2
+      },
+      {
+        "date": "2026-11-03",
+        "count": 44,
+        "level": 3
+      },
+      {
+        "date": "2026-11-04",
+        "count": 30,
+        "level": 2
+      },
+      {
+        "date": "2026-11-05",
+        "count": 37,
+        "level": 2
+      },
+      {
+        "date": "2026-11-06",
+        "count": 29,
+        "level": 2
+      },
+      {
+        "date": "2026-11-07",
+        "count": 7,
+        "level": 1
+      },
+      {
+        "date": "2026-11-08",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-11-09",
+        "count": 12,
+        "level": 1
+      },
+      {
+        "date": "2026-11-10",
+        "count": 16,
+        "level": 1
+      },
+      {
+        "date": "2026-11-11",
+        "count": 10,
         "level": 1
       }
     ],
@@ -1857,88 +1862,18 @@
     "metric": "tokens",
     "username": "NachoEstevo",
     "profileUrl": "https://tokscale.ai/u/NachoEstevo",
-    "fetchedAt": "2026-10-27T19:09:26.515Z",
-    "publishedAt": "2026-10-27T19:07:09.891Z",
+    "fetchedAt": "2026-11-11T23:43:12.529Z",
+    "publishedAt": "2026-11-09T22:20:58.713Z",
     "period": {
-      "start": "2025-10-26",
-      "end": "2026-10-27",
-      "days": 367
+      "start": "2025-11-09",
+      "end": "2026-11-11",
+      "days": 368
     },
-    "total": 73156097127,
-    "lifetimeTotal": 73375895047,
-    "cacheTokens": 70754642472,
-    "activeDays": 244,
+    "total": 86452272775,
+    "lifetimeTotal": 86673110516,
+    "cacheTokens": 83822787205,
+    "activeDays": 255,
     "days": [
-      {
-        "date": "2025-10-26",
-        "count": 434506,
-        "level": 1
-      },
-      {
-        "date": "2025-10-27",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-28",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-29",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-30",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-10-31",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-01",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-02",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-03",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-04",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-05",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-06",
-        "count": 605315,
-        "level": 1
-      },
-      {
-        "date": "2025-11-07",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-11-08",
-        "count": 0,
-        "level": 0
-      },
       {
         "date": "2025-11-09",
         "count": 0,
@@ -3276,7 +3211,7 @@
       },
       {
         "date": "2026-08-03",
-        "count": 290234021,
+        "count": 354272023,
         "level": 1
       },
       {
@@ -3556,7 +3491,7 @@
       },
       {
         "date": "2026-09-28",
-        "count": 1071790412,
+        "count": 1083737395,
         "level": 2
       },
       {
@@ -3671,7 +3606,7 @@
       },
       {
         "date": "2026-10-21",
-        "count": 1423460163,
+        "count": 1429779965,
         "level": 2
       },
       {
@@ -3701,8 +3636,83 @@
       },
       {
         "date": "2026-10-27",
-        "count": 501563620,
+        "count": 861571027,
         "level": 1
+      },
+      {
+        "date": "2026-10-28",
+        "count": 817445157,
+        "level": 1
+      },
+      {
+        "date": "2026-10-29",
+        "count": 102357827,
+        "level": 1
+      },
+      {
+        "date": "2026-10-30",
+        "count": 421375514,
+        "level": 1
+      },
+      {
+        "date": "2026-10-31",
+        "count": 1681792526,
+        "level": 2
+      },
+      {
+        "date": "2026-11-01",
+        "count": 323333740,
+        "level": 1
+      },
+      {
+        "date": "2026-11-02",
+        "count": 753759779,
+        "level": 1
+      },
+      {
+        "date": "2026-11-03",
+        "count": 1694903363,
+        "level": 2
+      },
+      {
+        "date": "2026-11-04",
+        "count": 1195365891,
+        "level": 2
+      },
+      {
+        "date": "2026-11-05",
+        "count": 2359885594,
+        "level": 3
+      },
+      {
+        "date": "2026-11-06",
+        "count": 2079186416,
+        "level": 3
+      },
+      {
+        "date": "2026-11-07",
+        "count": 1084025370,
+        "level": 2
+      },
+      {
+        "date": "2026-11-08",
+        "count": 34216974,
+        "level": 1
+      },
+      {
+        "date": "2026-11-09",
+        "count": 307255124,
+        "level": 1
+      },
+      {
+        "date": "2026-11-10",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-11-11",
+        "count": 0,
+        "level": 0
       }
     ],
     "basis": "Calendario anual de tokens publicados en Tokscale, alineado con GitHub. Incluye lectura y escritura de caché. lifetimeTotal es el total histórico publicado del perfil."
