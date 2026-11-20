@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const port = Number(process.env.PORT || 4320);
+const notFoundPage = await readFile(resolve(root, '404.html'));
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.woff2': 'font/woff2' };
 http.createServer(async (request, response) => {
   try {
@@ -21,6 +22,7 @@ http.createServer(async (request, response) => {
     response.writeHead(200, { 'Content-Type': types[extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
     response.end(body);
   } catch {
-    response.writeHead(404).end('Not found');
+    response.writeHead(404, { 'Content-Type': types['.html'], 'Cache-Control': 'no-store' });
+    response.end(notFoundPage);
   }
 }).listen(port, '127.0.0.1', () => console.log(`Estevito: http://127.0.0.1:${port}`));
