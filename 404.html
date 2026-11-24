@@ -71,14 +71,8 @@
         display: none !important;
       }
       .shell {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        min-height: 100svh;
         width: min(1136px, calc(100% - 88px));
         margin: auto;
-      }
-      main {
-        display: grid;
       }
       header {
         height: 98px;
@@ -154,23 +148,6 @@
         color: var(--paper);
         border-radius: 6px;
       }
-      .elsewhere {
-        justify-content: center;
-        gap: 0 22px;
-        margin: 0;
-        padding-bottom: 12px;
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .elsewhere a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-        text-decoration: none;
-      }
-      .elsewhere a:hover {
-        color: var(--accent);
-      }
       .project-link {
         color: var(--body);
         display: inline-flex;
@@ -213,6 +190,7 @@
         font-display: swap;
       }
       .postal {
+        min-height: calc(100svh - 98px);
         display: grid;
         grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
         gap: 38px;
@@ -415,6 +393,7 @@
           align-items: stretch;
           justify-content: center;
           gap: 37px;
+          min-height: 0;
           padding: 42px 0 36px;
         }
         .postal h1 {
@@ -547,18 +526,6 @@
           </figure>
         </article>
       </main>
-      <footer>
-        <nav
-          class="elsewhere"
-          aria-label="Otros sitios"
-          data-label-en="Other sites"
-        >
-          <a href="https://things.nachoestevo.com/">things</a>
-          <a href="https://map.nachoestevo.com/">map</a>
-          <a href="https://nomadasjapon.com/">nomads</a>
-          <a href="https://kumo-no-niwa.vercel.app/">kumo</a>
-        </nav>
-      </footer>
     </div>
     <script>
       (() => {
